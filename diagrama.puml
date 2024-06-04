@@ -1,0 +1,54 @@
+@startuml
+
+class Task {
+  int id
+  String title
+  String description
+  String status
+  DateTime created_at
+}
+
+interface TaskRepository {
+  +create(task: TaskCreate): Task
+  +get(task_id: int): Task
+  +update(task_id: int, task: TaskUpdate): Task
+  +delete(task_id: int): None
+  +list(): List<Task>
+}
+
+class TaskRepositoryImpl {
+  +create(task: TaskCreate): Task
+  +get(task_id: int): Task
+  +update(task_id: int, task: TaskUpdate): Task
+  +delete(task_id: int): None
+  +list(): List<Task>
+}
+
+interface TaskService {
+  +create_task(task: TaskCreate): Task
+  +get_task(task_id: int): Task
+  +update_task(task_id: int, task: TaskUpdate): Task
+  +delete_task(task_id: int): None
+  +list_tasks(): List<Task>
+}
+
+class TaskServiceImpl {
+  +create_task(task: TaskCreate): Task
+  +get_task(task_id: int): Task
+  +update_task(task_id: int, task: TaskUpdate): Task
+  +delete_task(task_id: int): None
+  +list_tasks(): List<Task>
+}
+
+class TaskController {
+  +create_task(task: TaskCreate): Task
+  +get_task(task_id: int): Task
+  +update_task(task_id: int, task: TaskUpdate): Task
+  +delete_task(task_id: int): None
+  +list_tasks(): List<Task>
+}
+
+TaskController --> TaskServiceImpl
+TaskServiceImpl --> TaskRepositoryImpl
+
+@enduml
